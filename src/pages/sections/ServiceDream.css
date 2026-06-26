@@ -1,0 +1,25 @@
+.service-dream-inner {
+  display: block;
+}
+
+.service-dream-text {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-right: 0;
+  text-align: left;
+}
+
+.service-dream-text .aspirational-paragraphs {
+  columns: 2;
+  column-gap: 48px;
+}
+
+.service-dream-text .aspirational-paragraphs p {
+  break-inside: avoid;
+}
+
+@media (max-width: 768px) {
+  .service-dream-text .aspirational-paragraphs {
+    columns: 1;
+  }
+}

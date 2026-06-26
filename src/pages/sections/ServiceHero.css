@@ -1,0 +1,29 @@
+.service-hero {
+  min-height: auto;
+  background: var(--white);
+  padding: calc(var(--header-h) + 64px) 0 56px;
+}
+
+.service-hero .hero-content {
+  max-width: 760px;
+}
+
+.service-hero .hero-title {
+  color: var(--black);
+}
+
+.service-hero .hero-subtitle {
+  color: var(--gray-600);
+}
+
+@media (max-width: 768px) {
+  .service-hero {
+    padding: calc(var(--header-h) + 36px) 0 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-hero {
+    padding: calc(var(--header-h) + 24px) 0 32px;
+  }
+}
