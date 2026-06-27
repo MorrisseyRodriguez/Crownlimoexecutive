@@ -15,11 +15,11 @@ export default function Footer() {
             <img src={crownLogo} alt="" className="footer-logo-img" aria-hidden="true" />
             <div>
               <p className="footer-brand-name">Crown Limousine LA</p>
-              <p className="footer-brand-sub">Executive Transportation</p>
+              <p className="footer-brand-sub">Chauffeur Services</p>
             </div>
           </div>
           <p className="footer-tagline">
-            Serving Los Angeles and Southern California with professional executive transportation since 1994.
+            Serving Los Angeles and Southern California with professional chauffeur services since 1994.
           </p>
         </div>
 
