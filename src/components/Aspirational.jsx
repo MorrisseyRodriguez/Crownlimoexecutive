@@ -19,7 +19,7 @@ export default function Aspirational() {
 
         <div className="aspirational-inner">
           <div className="aspirational-image-wrap reveal">
-            <img src={aspirationalImg} alt="" className="aspirational-image" aria-hidden="true" />
+            <img src={aspirationalImg} alt="" className="aspirational-image" aria-hidden="true" loading="lazy" decoding="async" />
             <div className="aspirational-badge" aria-label="Serving Southern California Since 1994">
               <span className="aspirational-badge-year">1994</span>
               <span className="aspirational-badge-text">Serving SoCal</span>

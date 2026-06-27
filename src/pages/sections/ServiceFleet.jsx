@@ -17,6 +17,8 @@ function FleetCard({ v }) {
             src={src}
             alt={si === 0 ? `${v.class} exterior` : `${v.class} interior`}
             className={`fleet-card-photo${imgIndex === si ? ' fleet-card-photo--active' : ''}`}
+            loading="lazy"
+            decoding="async"
           />
         ))}
         {v.label && <span className="fleet-card-badge">{v.label}</span>}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import escaladeExt from '../Fleet/Cadillac Escalade/escalade.webp'
 import escaladeInt from '../Fleet/Cadillac Escalade/escalade-int.webp'
@@ -91,6 +91,8 @@ function FleetCard({ v }) {
             src={src}
             alt={si === 0 ? `${v.class} exterior` : `${v.class} interior`}
             className={`fleet-card-photo${imgIndex === si ? ' fleet-card-photo--active' : ''}`}
+            loading="lazy"
+            decoding="async"
           />
         ))}
         {v.label && <span className="fleet-card-badge">{v.label}</span>}
@@ -150,6 +152,9 @@ function FleetCard({ v }) {
 export default function Fleet() {
   const [page, setPage] = useState(0)
   const [cardsPerPage, setCardsPerPage] = useState(2)
+  const touchStartRef = useRef(null)
+  const mouseStartRef = useRef(null)
+  const isDraggingRef = useRef(false)
 
   useEffect(() => {
     const update = () => {
@@ -164,6 +169,24 @@ export default function Fleet() {
 
   const totalPages = Math.ceil(vehicles.length / cardsPerPage)
 
+  const goNext = () => setPage(p => Math.min(totalPages - 1, p + 1))
+  const goPrev = () => setPage(p => Math.max(0, p - 1))
+
+  const onTouchStart = (e) => { touchStartRef.current = e.touches[0].clientX }
+  const onTouchEnd = (e) => {
+    if (touchStartRef.current === null) return
+    const diff = touchStartRef.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 40) diff > 0 ? goNext() : goPrev()
+    touchStartRef.current = null
+  }
+  const onMouseDown = (e) => { mouseStartRef.current = e.clientX; isDraggingRef.current = true }
+  const onMouseUp = (e) => {
+    if (!isDraggingRef.current) return
+    isDraggingRef.current = false
+    const diff = mouseStartRef.current - e.clientX
+    if (Math.abs(diff) > 40) diff > 0 ? goNext() : goPrev()
+  }
+
   return (
     <section className="fleet" id="fleet" aria-labelledby="fleet-heading">
       <div className="container">
@@ -174,7 +197,14 @@ export default function Fleet() {
         </div>
       </div>
 
-      <div className="fleet-carousel-outer">
+      <div
+        className="fleet-carousel-outer"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        style={{ cursor: 'grab' }}
+      >
         <div
           className="fleet-carousel-track"
           style={{
@@ -191,7 +221,7 @@ export default function Fleet() {
         <div className="fleet-pagination">
           <button
             className="fleet-page-arrow"
-            onClick={() => setPage(p => Math.max(0, p - 1))}
+            onClick={goPrev}
             disabled={page === 0}
             aria-label="Previous page"
           >
@@ -212,7 +242,7 @@ export default function Fleet() {
           ))}
           <button
             className="fleet-page-arrow"
-            onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+            onClick={goNext}
             disabled={page === totalPages - 1}
             aria-label="Next page"
           >

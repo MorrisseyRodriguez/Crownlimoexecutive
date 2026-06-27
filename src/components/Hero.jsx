@@ -5,18 +5,11 @@ const scrollToQuote = () => {
   document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' })
 }
 
-const trustItems = [
-  'Serving Southern California Since 1994',
-  '1,900+ Combined Reviews Across Major Platforms',
-  '15+ Industry Awards',
-  'Professional Chauffeurs & Executive Fleet',
-]
-
 export default function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-heading">
       <div className="hero-bg">
-        <img src={heroImg} alt="" className="hero-image" aria-hidden="true" />
+        <img src={heroImg} alt="" className="hero-image" aria-hidden="true" loading="eager" fetchpriority="high" />
         <div className="hero-overlay" />
       </div>
 
@@ -35,17 +28,6 @@ export default function Hero() {
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>
-        </div>
-
-        <div className="hero-trust" role="list" aria-label="Trust indicators">
-          {trustItems.map((item, i) => (
-            <div key={i} className="hero-trust-item" role="listitem">
-              <svg className="hero-trust-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              <span>{item}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>

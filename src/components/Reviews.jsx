@@ -60,11 +60,6 @@ export default function Reviews() {
     return () => window.removeEventListener('resize', measure)
   }, [])
 
-  useEffect(() => {
-    const interval = setInterval(next, 6000)
-    return () => clearInterval(interval)
-  }, [next])
-
   const onTouchStart = (e) => {
     startXRef.current = e.touches[0].clientX
     isDraggingRef.current = true

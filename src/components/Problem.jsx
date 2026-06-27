@@ -45,7 +45,7 @@ export default function Problem() {
           </div>
 
           <div className="problem-image-wrap reveal reveal-delay-1">
-            <img src={problemImg} alt="" className="problem-image" aria-hidden="true" />
+            <img src={problemImg} alt="" className="problem-image" aria-hidden="true" loading="lazy" decoding="async" />
             <div className="problem-image-accent" aria-hidden="true" />
           </div>
         </div>
