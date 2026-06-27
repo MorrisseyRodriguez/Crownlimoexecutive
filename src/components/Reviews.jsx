@@ -169,7 +169,9 @@ export default function Reviews() {
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>
-          <div className="reviews-platforms">
+        </div>
+
+        <div className="reviews-platforms">
             <a
               href="https://share.google/45bGCU7ezNMWlrIMo"
               className="reviews-platform-link"
@@ -197,7 +199,6 @@ export default function Reviews() {
               <span>Read Reviews</span>
             </a>
           </div>
-        </div>
       </div>
     </section>
   )
