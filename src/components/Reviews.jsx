@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
+import yelpLogo from '../Logo/download.png'
 import './Reviews.css'
 
 const reviews = [
@@ -168,6 +169,34 @@ export default function Reviews() {
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </button>
+          <div className="reviews-platforms">
+            <a
+              href="https://share.google/45bGCU7ezNMWlrIMo"
+              className="reviews-platform-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Read our reviews on Google"
+            >
+              <svg className="reviews-google-logo" viewBox="0 0 48 48" width="80" height="28" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v8.7h12.4c-.5 2.7-2.1 5-4.5 6.5v5.4h7.2c4.2-3.9 6.6-9.6 6.6-16z"/>
+                <path fill="#34A853" d="M24 47c6.5 0 11.9-2.1 15.9-5.8l-7.2-5.4c-2.1 1.4-4.7 2.2-8.7 2.2-6.7 0-12.3-4.5-14.3-10.5H2.2v5.5C6.2 41.9 14.5 47 24 47z"/>
+                <path fill="#FBBC05" d="M9.7 27.5c-.5-1.4-.8-3-.8-4.5s.3-3.1.8-4.5v-5.5H2.2C.8 16 0 19.9 0 24s.8 8 2.2 11l7.5-7.5z"/>
+                <path fill="#EA4335" d="M24 9.5c3.7 0 7 1.3 9.6 3.8l7.2-7.2C36.9 2.1 31.5 0 24 0 14.5 0 6.2 5.1 2.2 13l7.5 5.5C11.7 14 17.3 9.5 24 9.5z"/>
+              </svg>
+              <span>Read Reviews</span>
+            </a>
+            <span className="reviews-platform-divider" aria-hidden="true" />
+            <a
+              href="https://www.yelp.com/biz/crown-limousine-la-los-angeles-3"
+              className="reviews-platform-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Read our reviews on Yelp"
+            >
+              <img src={yelpLogo} alt="Yelp" className="reviews-yelp-logo" loading="lazy" decoding="async" />
+              <span>Read Reviews</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
