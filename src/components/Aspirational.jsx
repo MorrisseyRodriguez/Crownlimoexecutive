@@ -34,7 +34,6 @@ export default function Aspirational() {
               <div className="aspirational-paragraphs reveal reveal-delay-2">
                 <p>Your chauffeur is already there when you need them. Every pickup, every route, every detail has been handled before it reaches your attention.</p>
                 <p>You have time to prepare for the next meeting, take an important call, or catch your breath before the day moves on.</p>
-                <p>You're not checking apps. You're not coordinating rides. You're not adjusting plans around transportation.</p>
                 <p>One meeting ends. The next destination is already handled. Your driver is waiting, your route is planned, and your day keeps moving without interruption.</p>
               </div>
               <div className="aspirational-close reveal reveal-delay-3">

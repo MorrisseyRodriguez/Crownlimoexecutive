@@ -4,7 +4,6 @@ import './Problem.css'
 const painPoints = [
   'An airport pickup that arrives late when timing matters most.',
   'A vehicle or driver that sends the wrong message to an important client.',
-  'Coordinating executive travel across shifting schedules.',
   'Travel delays that turn productive hours into wasted time.',
 ]
 
