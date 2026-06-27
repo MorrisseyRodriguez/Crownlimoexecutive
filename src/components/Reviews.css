@@ -182,8 +182,9 @@
 /* ── Platform badges ── */
 .reviews-platforms {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
   margin-top: 40px;
   padding-top: 32px;
   border-top: 1px solid var(--gray-200);
@@ -202,6 +203,7 @@
   border: 1.5px solid var(--gray-200);
   border-radius: 8px;
   background: var(--white);
+  min-width: 160px;
   transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
@@ -223,21 +225,12 @@
 }
 
 .reviews-platform-divider {
-  width: 1px;
-  height: 28px;
-  background: var(--gray-200);
-  flex-shrink: 0;
+  display: none;
 }
 
 @media (max-width: 480px) {
   .reviews-platforms {
-    flex-wrap: wrap;
-    gap: 12px;
     margin-top: 32px;
     padding-top: 24px;
-  }
-
-  .reviews-platform-divider {
-    display: none;
   }
 }
