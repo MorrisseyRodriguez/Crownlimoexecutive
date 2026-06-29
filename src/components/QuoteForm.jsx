@@ -43,9 +43,21 @@ export default function QuoteForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise(r => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'quote-request',
+          ...form,
+        }).toString(),
+      })
+      setSubmitted(true)
+    } catch {
+      // submission failed silently — keep loading off so user can retry
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (submitted) {
@@ -104,10 +116,14 @@ export default function QuoteForm() {
 
           <form
             className="quote-form"
+            name="quote-request"
+            method="POST"
+            data-netlify="true"
             onSubmit={handleSubmit}
             noValidate
             aria-label="Executive transportation quote request"
           >
+            <input type="hidden" name="form-name" value="quote-request" />
             <div className="form-grid form-grid-2">
               <div className="form-field">
                 <label htmlFor="name" className="form-label">Full Name <span aria-hidden="true">*</span></label>
