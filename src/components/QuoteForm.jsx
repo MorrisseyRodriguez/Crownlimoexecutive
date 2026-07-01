@@ -18,6 +18,7 @@ const vehicleTypes = [
 ]
 
 const defaultForm = {
+  campaignType: 'Executive Transportation',
   name: '',
   phone: '',
   email: '',
@@ -29,6 +30,11 @@ const defaultForm = {
   vehicleType: '',
   notes: '',
 }
+
+const encode = (data) =>
+  Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
 
 export default function QuoteForm() {
   const [form, setForm] = useState(defaultForm)
@@ -43,18 +49,55 @@ export default function QuoteForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+
     try {
-      await fetch('/', {
+      await fetch(window.location.pathname, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
+        body: encode({
           'form-name': 'quote-request',
+          campaignType: 'Executive Transportation',
           ...form,
-        }).toString(),
+        }),
       })
+      console.log('Netlify submission success')
+    } catch (netlifyError) {
+      if (netlifyError?.status === 404 || (netlifyError instanceof Error && netlifyError.message.includes('404'))) {
+        console.warn('Netlify Forms only work on deployed Netlify URLs, not local/Bolt preview.')
+      } else {
+        console.warn('Netlify submission failed:', netlifyError)
+      }
+    }
+
+    try {
+      if (!window.emailjs) {
+        throw new Error('EmailJS is not loaded. Check the CDN script in index.html.')
+      }
+
+      const templateParams = {
+        campaignType: 'Executive Transportation',
+        name: form.name || 'Not provided',
+        phone: form.phone || 'Not provided',
+        email: form.email || 'Not provided',
+        date: form.date || 'Not provided',
+        serviceType: form.serviceType || 'Not provided',
+        vehicleType: form.vehicleType || 'Not provided',
+        passengers: form.passengers || 'Not provided',
+        pickup: form.pickup || 'Not provided',
+        destination: form.destination || 'Not provided',
+        notes: form.notes || 'None',
+      }
+
+      await window.emailjs.send('service_3ft34fv', 'template_xpozite', templateParams)
+      console.log('EmailJS submission complete')
       setSubmitted(true)
-    } catch {
-      // submission failed silently — keep loading off so user can retry
+      setForm(defaultForm)
+    } catch (emailError) {
+      console.error('EmailJS submission failed:', emailError)
+      alert(
+        'Email submission failed: ' +
+        (emailError?.text || emailError?.message || JSON.stringify(emailError))
+      )
     } finally {
       setLoading(false)
     }
@@ -124,6 +167,7 @@ export default function QuoteForm() {
             aria-label="Executive transportation quote request"
           >
             <input type="hidden" name="form-name" value="quote-request" />
+            <input type="hidden" name="campaignType" value="Executive Transportation" />
             <div className="form-grid form-grid-2">
               <div className="form-field">
                 <label htmlFor="name" className="form-label">Full Name <span aria-hidden="true">*</span></label>
