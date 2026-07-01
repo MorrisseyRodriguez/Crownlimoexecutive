@@ -49,6 +49,9 @@ export default function QuoteForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
+    console.log('EmailJS loaded:', !!window.emailjs)
+    console.log('Submitting Executive Transportation form')
+    console.log('Current URL:', window.location.href)
 
     try {
       await fetch(window.location.pathname, {
