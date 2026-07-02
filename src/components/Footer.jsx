@@ -46,6 +46,7 @@ export default function Footer() {
           <div className="footer-col">
             <p className="footer-col-title">Contact</p>
             <ul className="footer-links footer-contact">
+              <li><a href="tel:+13109478898">(310) 947-8898</a></li>
               <li>Los Angeles, CA</li>
               <li>Serving Southern California</li>
               <li>Available 24/7</li>
