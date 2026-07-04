@@ -37,6 +37,7 @@ function ServicesDropdown({ onClose }) {
           className="services-dropdown-link"
           role="menuitem"
           onClick={onClose}
+          data-track={`header-dropdown-${l.to.replace('/', '')}`}
         >
           {l.label}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -45,7 +46,7 @@ function ServicesDropdown({ onClose }) {
         </Link>
       ))}
       <div className="services-dropdown-divider" />
-      <a href="/#services" className="services-dropdown-all" role="menuitem" onClick={onClose}>
+      <a href="/#services" className="services-dropdown-all" role="menuitem" onClick={onClose} data-track="header-dropdown-view-all">
         View All Services
       </a>
     </div>
@@ -106,6 +107,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
               onClick={() => setDropdownOpen(o => !o)}
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
+              data-track="header-services-dropdown"
             >
               Services
               <svg
@@ -129,7 +131,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
           </div>
 
           {anchorLinks.map(l => (
-            <a key={l.label} href={l.href} className="header-nav-link">{l.label}</a>
+            <a key={l.label} href={l.href} className="header-nav-link" data-track={`header-nav-${l.label.toLowerCase()}`}>{l.label}</a>
           ))}
         </nav>
 
@@ -138,6 +140,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
           onClick={() => setMenuOpen(o => !o)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
+          data-track="header-hamburger"
         >
           <span /><span /><span />
         </button>
@@ -149,6 +152,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
             className="mobile-menu-link mobile-menu-services-toggle"
             onClick={() => setMobileServicesOpen(o => !o)}
             aria-expanded={mobileServicesOpen}
+            data-track="mobile-services-toggle"
           >
             Services
             <svg
@@ -175,6 +179,7 @@ export default function Header({ menuOpen, setMenuOpen }) {
                   to={l.to}
                   className="mobile-services-link"
                   onClick={() => setMenuOpen(false)}
+                  data-track={`mobile-service-${l.to.replace('/', '')}`}
                 >
                   {l.label}
                 </Link>
@@ -182,11 +187,11 @@ export default function Header({ menuOpen, setMenuOpen }) {
             </div>
           )}
 
-          <a href="#fleet" className="mobile-menu-link" onClick={() => setMenuOpen(false)}>Fleet</a>
-          <a href="#about" className="mobile-menu-link" onClick={() => setMenuOpen(false)}>About</a>
-          <a href="#reviews" className="mobile-menu-link" onClick={() => setMenuOpen(false)}>Reviews</a>
+          <a href="#fleet" className="mobile-menu-link" onClick={() => setMenuOpen(false)} data-track="mobile-nav-fleet">Fleet</a>
+          <a href="#about" className="mobile-menu-link" onClick={() => setMenuOpen(false)} data-track="mobile-nav-about">About</a>
+          <a href="#reviews" className="mobile-menu-link" onClick={() => setMenuOpen(false)} data-track="mobile-nav-reviews">Reviews</a>
 
-          <button className="btn-primary mobile-menu-cta" onClick={() => { setMenuOpen(false); scrollToQuote() }}>
+          <button className="btn-primary mobile-menu-cta" onClick={() => { setMenuOpen(false); scrollToQuote() }} data-track="mobile-cta-get-quote">
             Get Your Quote
           </button>
         </nav>
