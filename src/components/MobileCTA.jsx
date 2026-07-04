@@ -32,8 +32,14 @@ export default function MobileCTA({ menuOpen, setMenuOpen }) {
 
       <button
         className="app-bar-btn app-bar-btn--primary"
-        onClick={scrollToQuote}
+        onClick={() => {
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'InitiateCheckout')
+          }
+          scrollToQuote()
+        }}
         aria-label="Get your quote"
+        data-track="mobile-appbar-get-quote"
       >
         <div className="app-bar-icon-circle app-bar-icon-circle--primary">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
